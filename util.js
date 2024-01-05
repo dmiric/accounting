@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const finalDir = "src";
+const finalDir = "compiled";
 const distDir = "dist";
 const backendDir = "backend";
 

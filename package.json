@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build frontend/*.html --no-cache --no-source-maps --no-optimize && node util.js && clasp push"
+    "build": "parcel build frontend/*.html --no-cache --no-source-maps --no-optimize && node util.js && clasp push && git add . && git commit -am. && git push -u origin main"
   },
   "author": "",
   "license": "ISC",
