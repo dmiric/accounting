@@ -1,0 +1,40 @@
+        <active-table id="lineitems" displayAddNewColumn="false" isHeaderTextEditable="false"
+          stripedRows='{"odd": {"backgroundColor": ""}, "even": {"backgroundColor": "#ebebeb7a"}}'
+          rowDropdown='{
+           "displaySettings":{"isAvailable": true, "openMethod": {"overlayClick": true}},
+           "canEditHeaderRow": false,
+           "isInsertUpAvailable": false,
+           "isInsertDownAvailable": false,
+           "isMoveAvailable": false,
+           "isDeleteAvailable": true
+           }'
+          columnDropdown='{
+           "isSortAvailable": false,
+           "isDeleteAvailable": false,
+           "isInsertLeftAvailable": false,
+           "isInsertRightAvailable": false,
+           "isMoveAvailable": false
+           }'
+          tableStyle='{
+           "borderRadius": 0,
+           "boxShadow": "rgb(172 172 172 / 17%) 0px 0.5px 1px 0px",
+           "width":"100%"
+          }'
+          availableDefaultColumnTypes="['Number']"
+          customColumnsSettings='[
+            { "headerName": "Roba", "defaultText": "Izaberite proizvod", "defaultColumnTypeName": "Roba", "cellStyle": {"width": "360px"}, "isHeaderTextEditable": false },
+            { "headerName": "Cijena", "isCellTextEditable":false, "cellStyle": {"backgroundColor": "#f1f1f1"}, "defaultColumnTypeName": "number", "isHeaderTextEditable": false },
+            { "headerName": "Popust", "isHeaderTextEditable": false },
+            { "headerName": "Količina", "defaultColumnTypeName": "Date d-m-y", "defaultColumnTypeName": "number", "isHeaderTextEditable": false },
+            { "headerName": "Ukupno", "isCellTextEditable":false, "cellStyle": {"backgroundColor": "#f1f1f1", "width": "166px"}, "defaultColumnTypeName": "number", "isHeaderTextEditable": false }
+          ]'
+          customColumnTypes='[{
+            "name": "Roba",
+            "select": {
+              "options": [],
+              "canAddMoreOptions": true
+            },
+            "iconSettings": {
+              "reusableIconName": "select"
+            }}]'
+          ></active-table>

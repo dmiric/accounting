@@ -1,0 +1,16 @@
+  body {
+    background: white;
+  }
+  .required::after {
+    content:" *";
+    color: red;
+  }
+  #totals-row {
+    font-size: 120%;
+  }
+  #error-message {
+    background: #FFCCCC;
+    padding: 3px;
+    text-align: center;
+    border-radius: 2px;
+  }

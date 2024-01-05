@@ -1,0 +1,18 @@
+{
+  "name": "accounting",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build frontend/*.html --no-cache --no-source-maps --no-optimize && node util.js && clasp push"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/google-apps-script": "^1.0.78",
+    "parcel-plugin-inliner": "^1.0.16"
+  },
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  }
+}
