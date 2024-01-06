@@ -99,6 +99,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var lineitems = document.getElementById("lineitems");
     // @ts-ignore
     var lineItemsData = lineitems.getData();
+    for (let i = 0; i < lineItemsData.length; i++) {
+      // @ts-ignore
+      lineItemsData[i][4] = numeral(lineItemsData[i][4]).value()
+    }
 
     var doc = {
       // @ts-ignore

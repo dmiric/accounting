@@ -15,7 +15,6 @@ function aGetDocuments() {
 function aNewDocument(partner, doc_type, created, delivered, paid, line_items) {
   line_items.shift()
   const total = aCalculateOrderTotal(line_items)
-  console.log(total)
   const newDocumentObj = aGetDocumentObj(partner, doc_type, created, delivered, paid, line_items, total)
   return newDocumentObj
 }
