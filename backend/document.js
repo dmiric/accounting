@@ -12,9 +12,20 @@ function aGetDocuments() {
   return JSON.stringify(values);
 }
 
-function aNewDocument(partner, doc_type, created, delivered, paid, discount, line_items, total) {
-  var newDocumentObj = aGetDocumentObj(partner, doc_type, created, delivered, paid, discount, line_items, total)
+function aNewDocument(partner, doc_type, created, delivered, paid, line_items) {
+  line_items.shift()
+  const total = aCalculateOrderTotal(line_items)
+  console.log(total)
+  const newDocumentObj = aGetDocumentObj(partner, doc_type, created, delivered, paid, line_items, total)
   return newDocumentObj
+}
+
+function aCalculateOrderTotal(line_items) {
+  let total = 0
+  for (let i = 0; i < line_items.length; i++) {
+    total = total + line_items[i][4];
+  }
+  return total
 }
 
 function aLoadDocument(doc_id) {
@@ -37,9 +48,8 @@ function aLoadDocument(doc_id) {
   return newDocumentObjFromSheet
 }
 
-function aGetDocumentObjFromSheet(partner_id, doc_type, created, delivered, paid, discount, line_items, total) {
+function aGetDocumentObjFromSheet(partner_id, doc_type, created, delivered, paid, line_items, total) {
   return {
-    'discount': discount,
     'type': doc_type,
     'dates': {
       'created': created,
@@ -52,30 +62,15 @@ function aGetDocumentObjFromSheet(partner_id, doc_type, created, delivered, paid
   }
 }
 
-function aValidateDocument(partner, doc_type, created, delivered, paid, discount, line_items, total) {
-  if (partner === '') {
-    return "Molimo unesite partnera!"
-  }
-
-  if (doc_type === '') {
-    return "Molimo odaberite vrstu dokumenta!"
-  }
-
-  if (created === '') {
-    return "Molimo unesite datum izrade!"
-  }
-}
-
-function aGetDocumentObj(partner, doc_type, created, delivered, paid, discount, line_items, total) {
+function aGetDocumentObj(partner, doc_type, created, delivered, paid, line_items, total) {
   return {
-    'discount': discount,
     'type': doc_type,
     'dates': {
       'created': created,
       'delivered': delivered,
       'paid': paid
     },
-    'partner_id': aGetPartnerIdByName(partner),
+    'partner_id': partner,
     'total': total,
     'lineItems': aGetLineItems(line_items)
   }
