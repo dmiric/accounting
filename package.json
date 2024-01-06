@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build frontend/*.html --no-cache --no-source-maps --no-optimize && node util.js && clasp push && git add . && git commit -am. && git push -u origin main",
-    "watch": "nodemon --watch frontend --watch backend --exec \"npm run-script build\""
+    "watch": "nodemon --watch frontend --watch backend --exec \"npm run-script build\" --ext js,html,css"
   },
   "author": "",
   "license": "ISC",
