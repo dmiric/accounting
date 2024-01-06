@@ -81,10 +81,11 @@ function aDocumentSave(document) {
     const docSheet = getSheetByName("Dokumenti")
     const lastRow = docSheet.getLastRow()
     const lastId = docSheet.getRange(lastRow, 1).getCell(1, 1).getValue()
-    doc_number = lastId + 1
+    const doc_number = lastId + 1
     docSheet.appendRow(
       [doc_number,
         document.partner_id,
+        document.setFormula("=VLOOKUP(B" + lastRow + ",Partneri!$A$2:$H,2)"),
         document.dates.created,
         document.dates.delivered,
         document.dates.paid,
