@@ -85,7 +85,7 @@ function aDocumentSave(document) {
     docSheet.appendRow(
       [doc_number,
         document.partner_id,
-        document.setFormula("=VLOOKUP(B" + lastRow + ",Partneri!$A$2:$H,2)"),
+        "=VLOOKUP(B" + lastRow + ",Partneri!$A$2:$H,2)",
         document.dates.created,
         document.dates.delivered,
         document.dates.paid,
