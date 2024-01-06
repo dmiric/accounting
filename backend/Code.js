@@ -7,8 +7,9 @@ function aCreateMenu_() {
   menu.addToUi()
 }
 
-function aTest() {
-
+function doGet() {
+  const htmlServ = HtmlService.createTemplateFromFile("find-a-document");
+  return htmlServ.evaluate()
 }
 
 function aLoadDocumentForm() {
