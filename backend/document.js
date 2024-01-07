@@ -37,12 +37,12 @@ function aLoadDocument(doc_id) {
   console.log(lineItems)
   var newDocumentObjFromSheet = aGetDocumentObjFromSheet(
     document[1],
-    document[6],
-    document[2],
+    document[7],
     document[3],
     document[4],
-    document[7],
-    lineItems);
+    document[5],
+    lineItems,
+    document[6]);
   console.log(newDocumentObjFromSheet)
   return newDocumentObjFromSheet
 }
@@ -51,9 +51,9 @@ function aGetDocumentObjFromSheet(partner_id, doc_type, created, delivered, paid
   return {
     'type': doc_type,
     'dates': {
-      'created': created,
-      'delivered': delivered,
-      'paid': paid
+      'created': JSON.stringify(created),
+      'delivered': JSON.stringify(delivered),
+      'paid': JSON.stringify(paid),
     },
     'partner': partner_id,
     'total': total,
