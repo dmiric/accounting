@@ -31,10 +31,10 @@ function aLoadDocument(doc_id) {
   // load base document
   const documents = aGetEntitiesByColumn('A', doc_id, "Dokumenti")
   const document = documents[0]
-
+  console.log(document)
   // load line items
   const lineItems = aGetEntitiesByColumn('B', doc_id, "Stavke")
-
+  console.log(lineItems)
   var newDocumentObjFromSheet = aGetDocumentObjFromSheet(
     document[1],
     document[6],
@@ -42,7 +42,8 @@ function aLoadDocument(doc_id) {
     document[3],
     document[4],
     document[7],
-    lineItems)
+    lineItems);
+  console.log(newDocumentObjFromSheet)
   return newDocumentObjFromSheet
 }
 
