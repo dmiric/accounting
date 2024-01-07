@@ -27,15 +27,24 @@ function onGetDocumentTypesSuccess(doc_types) {
 function onLoadDocumentSuccess(doc) {
   console.log(doc)
   var create_date = document.querySelector('#create_date');
-  const date_instance = initDateElement(create_date)
+  const date_instance = initDateElement(create_date, new Date())
   date_instance.setDate(new Date());
 }
 
-function initDateElement(element) {
+function initDateElement(element, defaultDate) {
   var options = {
     autoClose: true,
     container: document.body
   }
+
+  console.log(defaultDate)
+
+  if (defaultDate) {
+    options.defaultDate = defaultDate
+    options.setDefaultDate = true
+  }
+
+  console.log(options)
 
   var date_instance = M.Datepicker.init(element, options)
   element.onclick = function () {
