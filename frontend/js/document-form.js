@@ -24,6 +24,12 @@ function onGetDocumentTypesSuccess(doc_types) {
   M.FormSelect.init(partnerEl, {})
 }
 
+function onLoadDocumentSuccess(doc) {
+  console.log(doc)
+  var create_date = document.querySelector('#create_date');
+  create_date.setAttribute('value', 'defaultValue');
+}
+
 function createSelect(id, options) {
   var fragment = document.createDocumentFragment();
   var select = document.createElement('select');
@@ -50,6 +56,13 @@ document.addEventListener('DOMContentLoaded', function () {
   google.script.run.withSuccessHandler(onGetPartnersSuccess).aGetPartners();
   // @ts-ignore
   google.script.run.withSuccessHandler(onGetDocumentTypesSuccess).aGetDocumentTypes();
+
+  const formSwitch = 'edit'
+  const doc_id = 20;
+
+  if (formSwitch == 'edit') {
+    google.script.run.withSuccessHandler(onLoadDocumentSuccess).aLoadDocument(doc_id);
+  }
 
   // date pickers
   var options = {
@@ -158,6 +171,8 @@ document.addEventListener('DOMContentLoaded', function () {
       return 'Vrsta dokumenta mora biti odabrana!'
     }
 
+    // TODO: Add validation for line items
+
     return false
   }
 
@@ -182,4 +197,5 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById("error-message").remove()
     }
   }
+
 });
