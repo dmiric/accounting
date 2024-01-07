@@ -27,7 +27,11 @@ function onGetDocumentTypesSuccess(doc_types) {
 function onLoadDocumentSuccess(doc) {
   console.log(doc)
   var create_date = document.querySelector('#create_date');
-  const date_instance = initDateElement(create_date, new Date(JSON.parse(doc.dates.created)))
+  initDateElement(create_date, new Date(JSON.parse(doc.dates.created)))
+  var payment_date = document.querySelector('#payment_date')
+  initDateElement(payment_date, new Date(JSON.parse(doc.dates.paid)))
+  var delivery_date = document.querySelector('#delivery_date')
+  initDateElement(delivery_date, new Date(JSON.parse(doc.dates.delivered)))
 }
 
 function initDateElement(element, defaultDate) {
@@ -49,7 +53,6 @@ function initDateElement(element, defaultDate) {
   element.onclick = function () {
     date_instance.open()
   }
-  return date_instance
 }
 
 function createSelect(id, options) {
