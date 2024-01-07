@@ -42,8 +42,7 @@ function aLoadDocument(doc_id) {
     document[3],
     document[4],
     document[7],
-    lineItems,
-    document[5])
+    lineItems)
   return newDocumentObjFromSheet
 }
 
