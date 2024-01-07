@@ -27,8 +27,7 @@ function onGetDocumentTypesSuccess(doc_types) {
 function onLoadDocumentSuccess(doc) {
   console.log(doc)
   var create_date = document.querySelector('#create_date');
-  const date_instance = initDateElement(create_date, new Date())
-  date_instance.setDate(new Date());
+  const date_instance = initDateElement(create_date, new Date(new Date()))
 }
 
 function initDateElement(element, defaultDate) {
