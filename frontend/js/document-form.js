@@ -27,8 +27,8 @@ function onGetDocumentTypesSuccess(doc_types) {
 function onLoadDocumentSuccess(doc) {
   console.log(doc)
   var create_date = document.querySelector('#create_date');
-  var instance = M.Datepicker.getInstance(create_date);
-  instance.setDate(new Date());
+  const date_instance = initDateElement(create_date)
+  date_instance.setDate(new Date());
 }
 
 function initDateElement(element) {
@@ -41,6 +41,7 @@ function initDateElement(element) {
   element.onclick = function () {
     date_instance.open()
   }
+  return date_instance
 }
 
 function createSelect(id, options) {
@@ -65,17 +66,21 @@ function createSelect(id, options) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  const formSwitch = 'edit'
+
   // @ts-ignore
   google.script.run.withSuccessHandler(onGetPartnersSuccess).aGetPartners();
   // @ts-ignore
   google.script.run.withSuccessHandler(onGetDocumentTypesSuccess).aGetDocumentTypes();
 
-  var create_date = document.querySelector('#create_date')
-  initDateElement(create_date)
-  var payment_date = document.querySelector('#payment_date')
-  initDateElement(payment_date)
-  var delivery_date = document.querySelector('#delivery_date')
-  initDateElement(delivery_date)
+  if (formSwitch != 'edit') {
+    var create_date = document.querySelector('#create_date')
+    initDateElement(create_date)
+    var payment_date = document.querySelector('#payment_date')
+    initDateElement(payment_date)
+    var delivery_date = document.querySelector('#delivery_date')
+    initDateElement(delivery_date)
+  }
 
   document.getElementById("reset").addEventListener("click", function (event) {
     event.preventDefault()
@@ -129,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   });
 
-  const formSwitch = 'edit'
+
   const doc_id = 20;
 
   if (formSwitch == 'edit') {
