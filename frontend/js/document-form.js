@@ -27,7 +27,19 @@ function onGetDocumentTypesSuccess(doc_types) {
 function onLoadDocumentSuccess(doc) {
   console.log(doc)
   var create_date = document.querySelector('#create_date');
-  create_date.setAttribute('value', 'defaultValue');
+  create_date.setDate(new Date());
+}
+
+function initDateElement(element) {
+  var options = {
+    autoClose: true,
+    container: document.body
+  }
+
+  var date_instance = M.Datepicker.init(element, options)
+  element.onclick = function () {
+    date_instance.open()
+  }
 }
 
 function createSelect(id, options) {
@@ -57,42 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // @ts-ignore
   google.script.run.withSuccessHandler(onGetDocumentTypesSuccess).aGetDocumentTypes();
 
-  const formSwitch = 'edit'
-  const doc_id = 20;
-
-  if (formSwitch == 'edit') {
-    google.script.run.withSuccessHandler(onLoadDocumentSuccess).aLoadDocument(doc_id);
-  }
-
-  // date pickers
-  var options = {
-    autoClose: true,
-    container: document.body
-  }
-
   var create_date = document.querySelector('#create_date')
-  // @ts-ignore
-  var create_date_instance = M.Datepicker.init(create_date, options)
-  // @ts-ignore
-  create_date.onclick = function () {
-    create_date_instance.open()
-  }
-
+  initDateElement(create_date)
   var payment_date = document.querySelector('#payment_date')
-  // @ts-ignore
-  var payment_date_instance = M.Datepicker.init(payment_date, options)
-  // @ts-ignore
-  payment_date.onclick = function () {
-    payment_date_instance.open()
-  }
-
+  initDateElement(payment_date)
   var delivery_date = document.querySelector('#delivery_date')
-  // @ts-ignore
-  var delivery_date_instance = M.Datepicker.init(delivery_date, options)
-  // @ts-ignore
-  delivery_date.onclick = function () {
-    delivery_date_instance.open()
-  }
+  initDateElement(delivery_date)
 
   document.getElementById("reset").addEventListener("click", function (event) {
     event.preventDefault()
@@ -142,7 +124,16 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log(doc)
     // @ts-ignore
     google.script.run.withSuccessHandler(submitDocumentSuccess).aSubmitDocument(doc);
+
+
   });
+
+  const formSwitch = 'edit'
+  const doc_id = 20;
+
+  if (formSwitch == 'edit') {
+    google.script.run.withSuccessHandler(onLoadDocumentSuccess).aLoadDocument(doc_id);
+  }
 
   function showErrorMessage(error) {
     console.log(error)
