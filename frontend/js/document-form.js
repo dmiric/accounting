@@ -24,7 +24,7 @@ function onGetDocumentTypesSuccess(doc_types) {
   M.FormSelect.init(partnerEl, {})
 }
 
-function onLoadDocumentSuccess(doc) {
+function onLoadDocumentSuccess(doc, doc_id) {
   console.log(doc)
   var create_date = document.querySelector('#create_date');
   initDateElement(create_date, new Date(JSON.parse(doc.dates.created)))
@@ -32,6 +32,8 @@ function onLoadDocumentSuccess(doc) {
   initDateElement(payment_date, new Date(JSON.parse(doc.dates.paid)))
   var delivery_date = document.querySelector('#delivery_date')
   initDateElement(delivery_date, new Date(JSON.parse(doc.dates.delivered)))
+  var document_id = document.querySelector('#doc_id')
+  document_id.setAttribute("value", doc_id)
 }
 
 function initDateElement(element, defaultDate) {
@@ -149,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const doc_id = 20;
 
   if (formSwitch == 'edit') {
-    google.script.run.withSuccessHandler(onLoadDocumentSuccess).aLoadDocument(doc_id);
+    google.script.run.withSuccessHandler(onLoadDocumentSuccess).withUserObject(doc_id).aLoadDocument(doc_id);
   }
 
   function showErrorMessage(error) {
