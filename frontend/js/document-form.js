@@ -17,7 +17,7 @@ function onGetDocumentTypesSuccess(doc_types, selected = []) {
   console.log(doc_types_dual)
   var container = document.getElementById("document-type-container")
   console.log(container)
-  var select = createSelect("document-type", doc_types_dual)
+  var select = createSelect("document-type", doc_types_dual, selected)
   container.insertBefore(select, container.firstChild);
   var partnerEl = document.getElementById("document-type")
   // @ts-ignore
