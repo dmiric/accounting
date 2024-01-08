@@ -1,13 +1,13 @@
-function onGetPartnersSuccess(partners) {
+function onGetPartnersSuccess(partners, selected = []) {
   var container = document.getElementById("partner-container")
-  var select = createSelect("partner", partners)
+  var select = createSelect("partner", partners, selected)
   container.insertBefore(select, container.firstChild);
   var partnerEl = document.getElementById("partner")
   // @ts-ignore
   M.FormSelect.init(partnerEl, {})
 }
 
-function onGetDocumentTypesSuccess(doc_types) {
+function onGetDocumentTypesSuccess(doc_types, selected = []) {
   console.log(doc_types)
   var doc_types_dual = []
   for (var i = 0; i < doc_types.length; i++) {
@@ -28,12 +28,20 @@ function onLoadDocumentSuccess(doc, doc_id) {
   console.log(doc)
   var create_date = document.querySelector('#create_date');
   initDateElement(create_date, new Date(JSON.parse(doc.dates.created)))
+
   var payment_date = document.querySelector('#payment_date')
   initDateElement(payment_date, new Date(JSON.parse(doc.dates.paid)))
+
   var delivery_date = document.querySelector('#delivery_date')
   initDateElement(delivery_date, new Date(JSON.parse(doc.dates.delivered)))
+
   var document_id = document.querySelector('#doc_id')
   document_id.setAttribute("value", doc_id)
+
+  // @ts-ignore
+  google.script.run.withSuccessHandler(onGetPartnersSuccess).withUserObject([doc.partner]).aGetPartners();
+  // @ts-ignore
+  google.script.run.withSuccessHandler(onGetDocumentTypesSuccess).withUserObject([doc.type]).aGetDocumentTypes();
 }
 
 function initDateElement(element, defaultDate) {
@@ -42,14 +50,10 @@ function initDateElement(element, defaultDate) {
     container: document.body
   }
 
-  console.log(defaultDate)
-
   if (defaultDate) {
     options.defaultDate = defaultDate
     options.setDefaultDate = true
   }
-
-  console.log(options)
 
   var date_instance = M.Datepicker.init(element, options)
   element.onclick = function () {
@@ -57,13 +61,15 @@ function initDateElement(element, defaultDate) {
   }
 }
 
-function createSelect(id, options) {
+function createSelect(id, options, selected) {
   var fragment = document.createDocumentFragment();
   var select = document.createElement('select');
   select.setAttribute("id", id);
   select.setAttribute("class", "validate");
   select.required = true;
-  select.options.add(new Option("Odaberite", "", true, false));
+
+  if (selected.length == 0)
+    select.options.add(new Option("Odaberite", "", true, false));
 
   select.style.position = "absolute"
   select.style.display = "inline"
@@ -72,6 +78,12 @@ function createSelect(id, options) {
   select.style.width = '0'
 
   options.forEach(function (option) {
+    if (selected.length > 0) {
+      if (option[0] == selected[0]) {
+        select.options.add(new Option(option[1], option[0], true, true));
+        return;
+      }
+    }
     select.options.add(new Option(option[1], option[0]));
   });
   fragment.appendChild(select);
@@ -80,13 +92,12 @@ function createSelect(id, options) {
 
 document.addEventListener('DOMContentLoaded', function () {
   const formSwitch = 'edit'
-
-  // @ts-ignore
-  google.script.run.withSuccessHandler(onGetPartnersSuccess).aGetPartners();
-  // @ts-ignore
-  google.script.run.withSuccessHandler(onGetDocumentTypesSuccess).aGetDocumentTypes();
-
   if (formSwitch != 'edit') {
+    // @ts-ignore
+    google.script.run.withSuccessHandler(onGetPartnersSuccess).aGetPartners();
+    // @ts-ignore
+    google.script.run.withSuccessHandler(onGetDocumentTypesSuccess).aGetDocumentTypes();
+
     var create_date = document.querySelector('#create_date')
     initDateElement(create_date)
     var payment_date = document.querySelector('#payment_date')
