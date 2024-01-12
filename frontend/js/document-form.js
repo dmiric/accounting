@@ -282,7 +282,7 @@ function createSelect(id, options, selected) {
 function onAddDocumentFormDataSuccess(docData) {
   onGetPartnersSuccess(docData.partners)
   onGetDocumentTypesSuccess(docData.documentTypes)
-  onGetProductsSuccess(docData.products)
+  //onGetProductsSuccess(docData.products)
 }
 
 document.addEventListener('DOMContentLoaded', function () {
