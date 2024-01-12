@@ -110,21 +110,19 @@ function onGetProductsSuccess(products) {
   const costumColumnTypes = [{
     name: "Roba",
     select: {
-      options: ["test", "test2"],
+      options: [],
       canAddMoreOptions: true
     },
     iconSettings: {
       reusableIconName: "select"
     }
   }];
-  /*
-    for (let i = 0; i < products.length; i++) {
-      if (products[i][3] === true) {
-        costumColumnTypes[0].select.options.push(products[i][1])
-        productsCache.push(products[i])
-      }
+  for (let i = 0; i < products.length; i++) {
+    if (products[i][3] === true) {
+      costumColumnTypes[0].select.options.push(products[i][1])
+      productsCache.push(products[i])
     }
-  */
+  }
   console.log(costumColumnTypes)
 
   at.customColumnTypes = costumColumnTypes
