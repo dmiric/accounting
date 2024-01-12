@@ -138,12 +138,12 @@ at.onCellUpdate = function (cellUpdate) {
   if (cellUpdate.columnIndex == 0 && cellUpdate.updateType == 'Update' && cellUpdate.text != '' && cellUpdate.text != 'Izaberite proizvod') {
     const productPrice = arrayLookup(cellUpdate.text, productsCache, 1, 2)
     // @ts-ignore
-    activeTable.updateCell({ newText: numeral(productPrice).format('0.00'), rowIndex: cellUpdate.rowIndex, columnIndex: 1 });
+    at.updateCell({ newText: numeral(productPrice).format('0.00'), rowIndex: cellUpdate.rowIndex, columnIndex: 1 });
   }
   if ((cellUpdate.columnIndex == 1 || cellUpdate.columnIndex == 2 || cellUpdate.columnIndex == 3)
     && cellUpdate.updateType == 'Update' && cellUpdate.text != '') {
     // @ts-ignore
-    const lineItems = activeTable.getData();
+    const lineItems = at.getData();
     const lineItem = lineItems[cellUpdate.rowIndex]
     if (lineItem[3] != '') {
       // @ts-ignore
@@ -152,13 +152,13 @@ at.onCellUpdate = function (cellUpdate) {
         total = total - (total * (lineItem[2] / 100))
       }
       // @ts-ignore
-      activeTable.updateCell({ newText: numeral(total).format('0.00'), rowIndex: cellUpdate.rowIndex, columnIndex: 4 });
+      at.updateCell({ newText: numeral(total).format('0.00'), rowIndex: cellUpdate.rowIndex, columnIndex: 4 });
     }
   }
 
   // calculate sub total
   // @ts-ignore
-  const updatedLineItems = activeTable.getData();
+  const updatedLineItems = at.getData();
   // @ts-ignore
   const header = updatedLineItems.shift()
   let subTotal = 0
