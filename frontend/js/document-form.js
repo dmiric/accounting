@@ -96,6 +96,8 @@ function onAddDocumentFormDataSuccess(docData) {
   onGetPartnersSuccess(docData.partners)
   onGetDocumentTypesSuccess(docData.documentTypes)
   const activeTable = createActiveTable()
+  console.log(activeTable)
+  console.log(docData)
   onGetProductsSuccess(docData.products, activeTable)
 }
 
