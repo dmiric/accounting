@@ -111,7 +111,7 @@ function onGetProductsSuccess(products) {
   const costumColumnTypes = [{
     name: "Roba",
     select: {
-      options: [],
+      options: ["test", "test2"],
       canAddMoreOptions: true
     },
     iconSettings: {
@@ -282,7 +282,7 @@ function createSelect(id, options, selected) {
 function onAddDocumentFormDataSuccess(docData) {
   onGetPartnersSuccess(docData.partners)
   onGetDocumentTypesSuccess(docData.documentTypes)
-  //onGetProductsSuccess(docData.products)
+  onGetProductsSuccess(docData.products)
 }
 
 document.addEventListener('DOMContentLoaded', function () {
