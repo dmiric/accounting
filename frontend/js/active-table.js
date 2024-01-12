@@ -1,6 +1,6 @@
 var productsCache = []
 
-function createActiveTable() {
+var activeTable = function () {
 	console.log("run")
 	const activeTableConfig = {
 		id: "lineitems",
@@ -105,32 +105,30 @@ function createActiveTable() {
 		]
 	};
 
-	const activeTable = document.createElement('active-table');
+	const at = document.createElement('active-table');
 
-	activeTable.id = activeTableConfig.id
+	at.id = activeTableConfig.id
 	// @ts-ignore
-	activeTable.data = activeTableConfig.data
+	at.data = activeTableConfig.data
 	// @ts-ignore
-	activeTable.customColumnTypes = activeTableConfig.customColumnTypes
+	at.customColumnTypes = activeTableConfig.customColumnTypes
 	// @ts-ignore
-	activeTable.customColumnsSettings = activeTableConfig.customColumnsSettings
+	at.customColumnsSettings = activeTableConfig.customColumnsSettings
 	// @ts-ignore
-	activeTable.tableStyle = activeTableConfig.tableStyle
+	at.tableStyle = activeTableConfig.tableStyle
 	// @ts-ignore
-	activeTable.availableDefaultColumnTypes = activeTableConfig.availableDefaultColumnTypes
+	at.availableDefaultColumnTypes = activeTableConfig.availableDefaultColumnTypes
 	// @ts-ignore
-	activeTable.columnDropdown = activeTableConfig.columnDropdown
+	at.columnDropdown = activeTableConfig.columnDropdown
 	// @ts-ignore
-	activeTable.rowDropdown = activeTableConfig.rowDropdown
+	at.rowDropdown = activeTableConfig.rowDropdown
 	// @ts-ignore
-	activeTable.stripedRows = activeTableConfig.stripedRows
+	at.stripedRows = activeTableConfig.stripedRows
 	// @ts-ignore
-	activeTable.isHeaderTextEditable = activeTableConfig.isHeaderTextEditable
+	at.isHeaderTextEditable = activeTableConfig.isHeaderTextEditable
 	// @ts-ignore
-	activeTable.displayAddNewColumn = activeTableConfig.displayAddNewColumn
-	console.log(activeTable)
-
-	return activeTable
+	at.displayAddNewColumn = activeTableConfig.displayAddNewColumn
+	return at
 }
 
 function onGetProductsSuccess(products, activeTable) {
