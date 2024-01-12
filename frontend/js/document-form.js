@@ -119,7 +119,9 @@ at.displayAddNewColumn = activeTableConfig.displayAddNewColumn
 
 
 function onGetProductsSuccess(products, activeTable) {
+  console.log(products)
   products.forEach(function (product) {
+    console.log(product)
     if (product[3] === true) {
       activeTable.customColumnTypes[0].select.options.push(product[1])
       productsCache.push(product)
@@ -182,7 +184,6 @@ function arrayLookup(searchValue, array, searchIndex, returnIndex) {
   }
   return returnVal;
 }
-
 
 function onGetPartnersSuccess(partners, selected = []) {
   var container = document.getElementById("partner-container")
