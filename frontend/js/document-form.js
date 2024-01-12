@@ -127,6 +127,8 @@ function onGetProductsSuccess(products) {
     }
   });
 
+  console.log(costumColumnTypes)
+
   at.customColumnTypes = costumColumnTypes
   document.getElementById('lineitems-row').appendChild(at);
 }
