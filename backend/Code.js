@@ -21,7 +21,10 @@ function aLoadDocumentForm() {
 }
 
 function aLoadDocumentFormEdit() {
-  const html = HtmlService.createTemplateFromFile('document-form-edit').evaluate()
+  const html = HtmlService.createTemplateFromFile('document-form-edit');
+  html.doc_id = 20
+  html.evaluate();
+
   html.setWidth(850).setHeight(600)
   const ui = SpreadsheetApp.getUi()
   ui.showModalDialog(html, "Uredi dokument")

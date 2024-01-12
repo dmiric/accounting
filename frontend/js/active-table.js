@@ -125,9 +125,6 @@ activeTable.isHeaderTextEditable = activeTableConfig.isHeaderTextEditable
 // @ts-ignore
 activeTable.displayAddNewColumn = activeTableConfig.displayAddNewColumn
 
-// @ts-ignore
-google.script.run.withSuccessHandler(onGetProductsSuccess).withUserObject(activeTable).aGetProducts();
-
 function onGetProductsSuccess(products, activeTable) {
 	products.forEach(function (product) {
 		if (product[3] === true) {

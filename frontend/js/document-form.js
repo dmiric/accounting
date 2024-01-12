@@ -42,6 +42,8 @@ function onLoadDocumentSuccess(doc, doc_id) {
   google.script.run.withSuccessHandler(onGetPartnersSuccess).withUserObject([doc.partner]).aGetPartners();
   // @ts-ignore
   google.script.run.withSuccessHandler(onGetDocumentTypesSuccess).withUserObject([doc.type]).aGetDocumentTypes();
+  // @ts-ignore
+  google.script.run.withSuccessHandler(onGetProductsSuccess).withUserObject(activeTable).aGetProducts();
 }
 
 function initDateElement(element, defaultDate) {
@@ -92,11 +94,18 @@ function createSelect(id, options, selected) {
 
 document.addEventListener('DOMContentLoaded', function () {
   const formSwitch = 'edit'
+
+  if (formSwitch == 'edit') {
+    google.script.run.withSuccessHandler(onLoadDocumentSuccess).withUserObject(doc_id).aLoadDocument(doc_id);
+  }
+
   if (formSwitch != 'edit') {
     // @ts-ignore
     google.script.run.withSuccessHandler(onGetPartnersSuccess).aGetPartners();
     // @ts-ignore
     google.script.run.withSuccessHandler(onGetDocumentTypesSuccess).aGetDocumentTypes();
+    // @ts-ignore
+    google.script.run.withSuccessHandler(onGetProductsSuccess).withUserObject(activeTable).aGetProducts();
 
     var create_date = document.querySelector('#create_date')
     initDateElement(create_date)
@@ -157,13 +166,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   });
-
-
-  const doc_id = 20;
-
-  if (formSwitch == 'edit') {
-    google.script.run.withSuccessHandler(onLoadDocumentSuccess).withUserObject(doc_id).aLoadDocument(doc_id);
-  }
 
   function showErrorMessage(error) {
     console.log(error)

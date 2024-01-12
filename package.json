@@ -10,10 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/google-apps-script": "^1.0.78",
-    "parcel-plugin-inliner": "^1.0.16"
+    "@parcel/plugin": "^2.11.0",
+    "@types/google-apps-script": "^1.0.78"
   },
   "devDependencies": {
-    "parcel": "^2.10.3"
-  }
+    "parcel": "^2.10.3",
+    "parcel-resolver-ignore": "^2.2.0"
+  },
+  "parcelIgnore": [
+    "<?.*?>",
+    "{{.*}}"
+  ]
 }
