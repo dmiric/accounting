@@ -1,6 +1,7 @@
 var productsCache = []
 
 function createActiveTable() {
+	console.log("run")
 	const activeTableConfig = {
 		id: "lineitems",
 		displayAddNewColumn: false,
@@ -127,6 +128,7 @@ function createActiveTable() {
 	activeTable.isHeaderTextEditable = activeTableConfig.isHeaderTextEditable
 	// @ts-ignore
 	activeTable.displayAddNewColumn = activeTableConfig.displayAddNewColumn
+	console.log(activeTable)
 
 	return activeTable
 }
