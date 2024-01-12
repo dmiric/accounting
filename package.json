@@ -15,10 +15,10 @@
   },
   "devDependencies": {
     "parcel": "^2.10.3",
+    "parcel-optimizer-gas": "^1.0.6",
     "parcel-resolver-ignore": "^2.2.0"
   },
   "parcelIgnore": [
-    "<?.*?>",
     "{{.*}}"
   ]
 }

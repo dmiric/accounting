@@ -27,6 +27,29 @@ function aCalculateOrderTotal(line_items) {
   return total
 }
 
+function aEditDocumentData() {
+  const docFromData = aAddDocumentFormData()
+  const documents = aGetEntitiesByColumn('J', TRUE, "Dokumenti")
+  const document = documents[0]
+  docFromData.doc = aLoadDocument(document[0])
+  return docFromData
+}
+
+function aAddDocumentFormData() {
+  // @ts-ignore
+  const partners = aGetPartners();
+  // @ts-ignore
+  const documentTypes = aGetDocumentTypes();
+  // @ts-ignore
+  const products = aGetProducts();
+
+  return {
+    "partners": partners,
+    "documentTypes": documentTypes,
+    "products": products
+  }
+}
+
 function aLoadDocument(doc_id) {
   // load base document
   const documents = aGetEntitiesByColumn('A', doc_id, "Dokumenti")
