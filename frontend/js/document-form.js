@@ -119,14 +119,14 @@ at.displayAddNewColumn = activeTableConfig.displayAddNewColumn
 
 
 function onGetProductsSuccess(products, activeTable) {
-  console.log(products)
   products.forEach(function (product) {
-    console.log(product)
     if (product[3] === true) {
       activeTable.customColumnTypes[0].select.options.push(product[1])
       productsCache.push(product)
     }
   });
+  console.log(productsCache)
+  console.log(activeTable)
   document.getElementById('lineitems-row').appendChild(activeTable);
 }
 
