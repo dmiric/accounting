@@ -97,7 +97,6 @@ const at = document.createElement('active-table');
 
 at.id = activeTableConfig.id
 at.data = activeTableConfig.data
-at.customColumnsSettings = activeTableConfig.customColumnsSettings
 at.tableStyle = activeTableConfig.tableStyle
 at.availableDefaultColumnTypes = activeTableConfig.availableDefaultColumnTypes
 at.columnDropdown = activeTableConfig.columnDropdown
@@ -118,18 +117,18 @@ function onGetProductsSuccess(products) {
       reusableIconName: "select"
     }
   }];
-
-  for (let i = 0; i < products.length; i++) {
-    if (products[i][3] === true) {
-      costumColumnTypes[0].select.options.push(products[i][1])
-      productsCache.push(products[i])
+  /*
+    for (let i = 0; i < products.length; i++) {
+      if (products[i][3] === true) {
+        costumColumnTypes[0].select.options.push(products[i][1])
+        productsCache.push(products[i])
+      }
     }
-
-  }
-
+  */
   console.log(costumColumnTypes)
 
   at.customColumnTypes = costumColumnTypes
+  at.customColumnsSettings = activeTableConfig.customColumnsSettings
   document.getElementById('lineitems-row').appendChild(at);
 }
 
