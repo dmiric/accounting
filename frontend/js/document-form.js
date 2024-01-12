@@ -118,16 +118,16 @@ at.isHeaderTextEditable = activeTableConfig.isHeaderTextEditable
 at.displayAddNewColumn = activeTableConfig.displayAddNewColumn
 
 
-function onGetProductsSuccess(products, activeTable) {
+function onGetProductsSuccess(products) {
   products.forEach(function (product) {
     if (product[3] === true) {
-      activeTable.customColumnTypes[0].select.options.push(product[1])
+      at.customColumnTypes[0].select.options.push(product[1])
       productsCache.push(product)
     }
   });
   console.log(productsCache)
-  console.log(activeTable)
-  document.getElementById('lineitems-row').appendChild(activeTable);
+  console.log(at.customColumnTypes[0])
+  document.getElementById('lineitems-row').appendChild(at);
 }
 
 // pick a product
@@ -280,7 +280,7 @@ function onAddDocumentFormDataSuccess(docData) {
   onGetPartnersSuccess(docData.partners)
   onGetDocumentTypesSuccess(docData.documentTypes)
   console.log(docData)
-  onGetProductsSuccess(docData.products, at)
+  onGetProductsSuccess(docData.products)
 }
 
 document.addEventListener('DOMContentLoaded', function () {
