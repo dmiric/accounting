@@ -92,9 +92,10 @@ function createSelect(id, options, selected) {
   return fragment;
 }
 
-function onAddDocumentFormDataSuccess(docData, activeTable) {
+function onAddDocumentFormDataSuccess(docData) {
   onGetPartnersSuccess(docData.partners)
   onGetDocumentTypesSuccess(docData.documentTypes)
+  const activeTable = createActiveTable()
   onGetProductsSuccess(docData.products, activeTable)
 }
 
@@ -107,12 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (formSwitch != 'edit') {
     // @ts-ignore
-    google.script.run.withSuccessHandler(onAddDocumentFormDataSuccess).withUserObject(activeTable).aAddDocumentFormData();
-    // @ts-ignore
-    // google.script.run.withSuccessHandler(onGetPartnersSuccess).aGetPartners();
-    // @ts-ignore
-    // google.script.run.withSuccessHandler(onGetDocumentTypesSuccess).aGetDocumentTypes();
-    google.script.run.withSuccessHandler(onGetProductsSuccess).withUserObject(activeTable).aGetProducts();
+    google.script.run.withSuccessHandler(onAddDocumentFormDataSuccess).aAddDocumentFormData();
 
     var create_date = document.querySelector('#create_date')
     initDateElement(create_date)
