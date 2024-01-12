@@ -1,135 +1,122 @@
 var productsCache = []
 
-var activeTable = function () {
-  console.log("run")
-  const activeTableConfig = {
-    id: "lineitems",
-    displayAddNewColumn: false,
-    isHeaderTextEditable: false,
-    stripedRows: {
-      odd: {
-        backgroundColor: ""
-      },
-      even: {
-        backgroundColor: "#ebebeb7a"
-      }
+const activeTableConfig = {
+  id: "lineitems",
+  displayAddNewColumn: false,
+  isHeaderTextEditable: false,
+  stripedRows: {
+    odd: {
+      backgroundColor: ""
     },
-    rowDropdown: {
-      displaySettings: {
-        isAvailable: true,
-        openMethod: {
-          overlayClick: true
-        }
-      },
-      canEditHeaderRow: false,
-      isInsertUpAvailable: false,
-      isInsertDownAvailable: false,
-      isMoveAvailable: false,
-      isDeleteAvailable: true
-    },
-    columnDropdown: {
-      isSortAvailable: false,
-      isDeleteAvailable: false,
-      isInsertLeftAvailable: false,
-      isInsertRightAvailable: false,
-      isMoveAvailable: false
-    },
-    tableStyle: {
-      borderRadius: 0,
-      boxShadow: "rgb(172 172 172 / 17 % ) 0 px 0.5 px 1 px 0 px",
-    },
-    availableDefaultColumnTypes: ["Number"],
-    customColumnsSettings: [{
-      headerName: "Roba",
-      defaultText: "Izaberite proizvod",
-      defaultColumnTypeName: "Roba",
-      cellStyle: {
-        "width": "345px"
-      },
-      isHeaderTextEditable: false
-    },
-    {
-      headerName: "Cijena (€)",
-      isCellTextEditable: false,
-      cellStyle: {
-        "backgroundColor": "#f1f1f1",
-        "width": "100px",
-        "text-align": "right"
-      },
-      defaultColumnTypeName: "Number",
-      isHeaderTextEditable: false
-    },
-    {
-      headerName: "Popust (%)",
-      cellStyle: {
-        "width": "100px",
-        "text-align": "center"
-      },
-      defaultColumnTypeName: "Number",
-      isHeaderTextEditable: false
-    },
-    {
-      headerName: "Količina",
-      cellStyle: {
-        "width": "100px",
-        "text-align": "center"
-      },
-      defaultColumnTypeName: "Number",
-      isHeaderTextEditable: false
-    },
-    {
-      headerName: "Ukupno (€)",
-      isCellTextEditable: false,
-      cellStyle: {
-        "backgroundColor": "#f1f1f1",
-        "width": "166px",
-        "text-align": "right"
-      },
-      defaultColumnTypeName: "Number",
-      isHeaderTextEditable: false
+    even: {
+      backgroundColor: "#ebebeb7a"
     }
-    ],
-    customColumnTypes: [{
-      name: "Roba",
-      select: {
-        options: [],
-        canAddMoreOptions: true
-      },
-      iconSettings: {
-        reusableIconName: "select"
+  },
+  rowDropdown: {
+    displaySettings: {
+      isAvailable: true,
+      openMethod: {
+        overlayClick: true
       }
-    }],
-    data: [
-      ["Roba", "Cijena (€)", "Popust (%)", "Količina", "Ukupno (€)"],
-      ["", "", "", "", ""],
-    ]
-  };
+    },
+    canEditHeaderRow: false,
+    isInsertUpAvailable: false,
+    isInsertDownAvailable: false,
+    isMoveAvailable: false,
+    isDeleteAvailable: true
+  },
+  columnDropdown: {
+    isSortAvailable: false,
+    isDeleteAvailable: false,
+    isInsertLeftAvailable: false,
+    isInsertRightAvailable: false,
+    isMoveAvailable: false
+  },
+  tableStyle: {
+    borderRadius: 0,
+    boxShadow: "rgb(172 172 172 / 17 % ) 0 px 0.5 px 1 px 0 px",
+  },
+  availableDefaultColumnTypes: ["Number"],
+  customColumnsSettings: [{
+    headerName: "Roba",
+    defaultText: "Izaberite proizvod",
+    defaultColumnTypeName: "Roba",
+    cellStyle: {
+      "width": "345px"
+    },
+    isHeaderTextEditable: false
+  },
+  {
+    headerName: "Cijena (€)",
+    isCellTextEditable: false,
+    cellStyle: {
+      "backgroundColor": "#f1f1f1",
+      "width": "100px",
+      "text-align": "right"
+    },
+    defaultColumnTypeName: "Number",
+    isHeaderTextEditable: false
+  },
+  {
+    headerName: "Popust (%)",
+    cellStyle: {
+      "width": "100px",
+      "text-align": "center"
+    },
+    defaultColumnTypeName: "Number",
+    isHeaderTextEditable: false
+  },
+  {
+    headerName: "Količina",
+    cellStyle: {
+      "width": "100px",
+      "text-align": "center"
+    },
+    defaultColumnTypeName: "Number",
+    isHeaderTextEditable: false
+  },
+  {
+    headerName: "Ukupno (€)",
+    isCellTextEditable: false,
+    cellStyle: {
+      "backgroundColor": "#f1f1f1",
+      "width": "166px",
+      "text-align": "right"
+    },
+    defaultColumnTypeName: "Number",
+    isHeaderTextEditable: false
+  }
+  ],
+  customColumnTypes: [{
+    name: "Roba",
+    select: {
+      options: [],
+      canAddMoreOptions: true
+    },
+    iconSettings: {
+      reusableIconName: "select"
+    }
+  }],
+  data: [
+    ["Roba", "Cijena (€)", "Popust (%)", "Količina", "Ukupno (€)"],
+    ["", "", "", "", ""],
+  ]
+};
 
-  const at = document.createElement('active-table');
+const at = document.createElement('active-table');
 
-  at.id = activeTableConfig.id
-  // @ts-ignore
-  at.data = activeTableConfig.data
-  // @ts-ignore
-  at.customColumnTypes = activeTableConfig.customColumnTypes
-  // @ts-ignore
-  at.customColumnsSettings = activeTableConfig.customColumnsSettings
-  // @ts-ignore
-  at.tableStyle = activeTableConfig.tableStyle
-  // @ts-ignore
-  at.availableDefaultColumnTypes = activeTableConfig.availableDefaultColumnTypes
-  // @ts-ignore
-  at.columnDropdown = activeTableConfig.columnDropdown
-  // @ts-ignore
-  at.rowDropdown = activeTableConfig.rowDropdown
-  // @ts-ignore
-  at.stripedRows = activeTableConfig.stripedRows
-  // @ts-ignore
-  at.isHeaderTextEditable = activeTableConfig.isHeaderTextEditable
-  // @ts-ignore
-  at.displayAddNewColumn = activeTableConfig.displayAddNewColumn
-  return at
-}
+at.id = activeTableConfig.id
+at.data = activeTableConfig.data
+at.customColumnTypes = activeTableConfig.customColumnTypes
+at.customColumnsSettings = activeTableConfig.customColumnsSettings
+at.tableStyle = activeTableConfig.tableStyle
+at.availableDefaultColumnTypes = activeTableConfig.availableDefaultColumnTypes
+at.columnDropdown = activeTableConfig.columnDropdown
+at.rowDropdown = activeTableConfig.rowDropdown
+at.stripedRows = activeTableConfig.stripedRows
+at.isHeaderTextEditable = activeTableConfig.isHeaderTextEditable
+at.displayAddNewColumn = activeTableConfig.displayAddNewColumn
+
 
 function onGetProductsSuccess(products, activeTable) {
   products.forEach(function (product) {
@@ -143,7 +130,7 @@ function onGetProductsSuccess(products, activeTable) {
 
 // pick a product
 // @ts-ignore
-activeTable.onCellUpdate = function (cellUpdate) {
+at.onCellUpdate = function (cellUpdate) {
   if (cellUpdate.columnIndex == 0 && cellUpdate.updateType == 'Update' && cellUpdate.text != '' && cellUpdate.text != 'Izaberite proizvod') {
     const productPrice = arrayLookup(cellUpdate.text, productsCache, 1, 2)
     // @ts-ignore
@@ -291,9 +278,8 @@ function createSelect(id, options, selected) {
 function onAddDocumentFormDataSuccess(docData) {
   onGetPartnersSuccess(docData.partners)
   onGetDocumentTypesSuccess(docData.documentTypes)
-  console.log(activeTable)
   console.log(docData)
-  onGetProductsSuccess(docData.products, activeTable)
+  onGetProductsSuccess(docData.products, at)
 }
 
 document.addEventListener('DOMContentLoaded', function () {
