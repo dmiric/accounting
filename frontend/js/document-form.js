@@ -87,16 +87,6 @@ const activeTableConfig = {
     isHeaderTextEditable: false
   }
   ],
-  customColumnTypes: [{
-    name: "Roba",
-    select: {
-      options: [],
-      canAddMoreOptions: true
-    },
-    iconSettings: {
-      reusableIconName: "select"
-    }
-  }],
   data: [
     ["Roba", "Cijena (€)", "Popust (%)", "Količina", "Ukupno (€)"],
     ["", "", "", "", ""],
@@ -119,14 +109,25 @@ at.displayAddNewColumn = activeTableConfig.displayAddNewColumn
 
 
 function onGetProductsSuccess(products) {
+  const costumColumnTypes = [{
+    name: "Roba",
+    select: {
+      options: [],
+      canAddMoreOptions: true
+    },
+    iconSettings: {
+      reusableIconName: "select"
+    }
+  }];
+
   products.forEach(function (product) {
     if (product[3] === true) {
-      at.customColumnTypes[0].select.options.push(product[1])
+      costumColumnTypes[0].select.options.push(product[1])
       productsCache.push(product)
     }
   });
-  console.log(productsCache)
-  console.log(at.customColumnTypes[0])
+
+  at.customColumnTypes = costumColumnTypes
   document.getElementById('lineitems-row').appendChild(at);
 }
 
