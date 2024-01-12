@@ -119,12 +119,13 @@ function onGetProductsSuccess(products) {
     }
   }];
 
-  products.forEach(function (product) {
-    if (product[3] === true) {
-      costumColumnTypes[0].select.options.push(product[1])
-      productsCache.push(product)
+  for (let i = 0; i < products.length; i++) {
+    if (products[i][3] === true) {
+      costumColumnTypes[0].select.options.push(products[i][1])
+      productsCache.push(products[i])
     }
-  });
+
+  }
 
   console.log(costumColumnTypes)
 
