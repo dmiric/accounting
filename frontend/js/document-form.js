@@ -97,7 +97,6 @@ const at = document.createElement('active-table');
 
 at.id = activeTableConfig.id
 at.data = activeTableConfig.data
-at.customColumnTypes = activeTableConfig.customColumnTypes
 at.customColumnsSettings = activeTableConfig.customColumnsSettings
 at.tableStyle = activeTableConfig.tableStyle
 at.availableDefaultColumnTypes = activeTableConfig.availableDefaultColumnTypes
@@ -282,7 +281,6 @@ function createSelect(id, options, selected) {
 function onAddDocumentFormDataSuccess(docData) {
   onGetPartnersSuccess(docData.partners)
   onGetDocumentTypesSuccess(docData.documentTypes)
-  console.log(docData)
   onGetProductsSuccess(docData.products)
 }
 
